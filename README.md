@@ -8,7 +8,18 @@ Calculate percentages from grand total when last row in data set is grand total.
                                                                                                                                       
     Elegant solution by Kurt Bremser                                                                                                  
     https://communities.sas.com/t5/user/viewprofilepage/user-id/11562                                                                 
-                                                                                                                                      
+      
+    Nice enhancement by                                                        
+    Paul Dorfman <sashole@BELLSOUTH.NET>                                       
+                                                                               
+    Which will work regardless of where "Total" is located. And                
+                                                                               
+    data want (drop = _:) ;                                                    
+      if _n_ = 1 then set have (where=(category="Total") rename=(total=_t)) ;  
+      set have ;                                                               
+      pct = 100 * divide (total, _t) ;                                         
+    run ;                                                                      
+
                                                                                                                                       
     INPUT                                                                                                                             
     =====                                                                                                                             
