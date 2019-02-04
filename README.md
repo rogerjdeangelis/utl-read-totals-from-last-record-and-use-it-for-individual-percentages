@@ -19,27 +19,8 @@ Calculate percentages from grand total when last row in data set is grand total.
       set have ;                                                               
       pct = 100 * divide (total, _t) ;                                         
     run ;     
-    
-    Another recent enhancement                                                                 
-                                                                                               
-    Sometimes dictionary queries can take a long time, EG server prior to 9.4M5?               
-                                                                                               
-    Bartosz Jablonski                                                                          
-    yabwon@gmail.com                                                                           
-                                                                                               
-    Skipping the dictionaries                                                                  
-                                                                                               
-    proc transpose data = mydata(obs=0) out = names(keep=_name_);                              
-    run;                                                                                       
-                                                                                               
-    proc sql noprint ;                                                                         
-      select catt (var, " label='", label, "'") into :modify separated by ", " from labeldata  
-      where var in (select _name_ from names)                                                  
-      ;                                                                                        
-      alter table mydata modify &modify ;                                                      
-    quit ;                                                                                     
-                                                                                              
-                                                                                                                                      
+                                                                            
+                                                                                                                                                                                                                                  
     INPUT                                                                                                                             
     =====                                                                                                                             
                                                                                                                                       
